@@ -1,0 +1,6 @@
+applicationId: 78b5c174611b58615e0790292f466e20f43d03fd309eec82ee596fe38fe95877
+
+Secret: 700a7d7e430568fbc03d18adec038aa2b02fd23b05ee8e0821efe4660a434322
+
+Callback URLs
+urn:ietf:wg:oauth:2.0:oob
