@@ -5,7 +5,7 @@ mongoose.connect('mongodb://localhost/toDoMvp', {useMongoClient: true});
 const db = mongoose.connection
 
 db.on('error', console.error.bind(console, 'connection error: '))
-db.once('open', () => console.log('mongo up'))
+db.once('open', () => console.log('mon mon mongoooseee'))
 
 const PhotoSchema = mongoose.model('photo', {
   url: String,
