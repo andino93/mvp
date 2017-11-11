@@ -1,6 +1,6 @@
 angular.module('todo-view')
 .component('dailyImage', {
-  controller: () => {
+  controller: function () {
     console.log('daily image')
   },
 
