@@ -7,18 +7,19 @@ const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error: '))
 db.once('open', () => console.log('mon mon mongoooseee'))
 
-const PhotoSchema = mongoose.model('photo', {
-  url: String,
-  title: String
-})
-
-const ToDoScheme = mongoose.model('todo', {
+const ToDoSchema = mongoose.model('todo', {
   task: String,
-  isDone: Boolean
+  isDone: Boolean,
+
 })
 
 //TODO:
 // save function
 // change isDone status function
 // read function
+// delete function
 // export functions
+
+const save = () => {
+
+}
