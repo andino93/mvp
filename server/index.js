@@ -6,7 +6,7 @@ const db = require('../database/index.js')
 
 const app = express()
 
-app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
 
 // TODO:
@@ -23,13 +23,18 @@ app.use(express.json())
     [ ] *edit a todo item
 
 */
+app.get('/', (req, res) => res.send('please use proper endpoint'))
 
-app.get('/', (req, res) => {
-  res.send('hello world')
+app.get('/todo', (req, res) => {
+  res.send('get todo')
 })
 
-app.post('/', (req, res) => {
-  res.send('hello world')
+app.get('/photo', (req, res) => {
+  res.send('get photo')
+})
+
+app.post('/todo', (req, res) => {
+  res.send('post todo')
 })
 
 app.listen(3000, () => console.log('hello server be runnin'))

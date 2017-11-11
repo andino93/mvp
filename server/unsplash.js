@@ -1,10 +1,17 @@
-const Unsplash = require('../node_modules/unsplash-js')
-const fetch = require('fetch')
+const request = require('request-promise')
+const Promise = require('bluebird')
+const config = require('../config/config.js')
 
-const unsplash = new Unsplash({
-  applicationId: "{}",
-  secret: "{}",
-  callbackUrl: "{}"
-})
+const unsplash = () => {
+  let options = {
+    url: `https://api.unsplash.com/photos/random/`,
+    headers: {
+      'Accept-Version': 'v1',
+      'Authorization': `Client-ID ${config.applicationID}`
+    }
+  }
 
-console.log(unsplash)
+  return request(options)
+}
+
+module.exports.unsplash = unsplash
