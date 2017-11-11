@@ -1,13 +1,26 @@
 angular.module('todo-view')
 .component('dailyImage', {
-  controller: function () {
-    console.log('daily image')
+  bindings: {
+
+  },
+
+  controller: function (server) {
+    this.image = ''
+    this.getNewImage = () => {
+      server.get('photo')
+      .then(({data}) => this.image = JSON.parse(data)[0].urls.small)
+      .catch(err => console.error(err))
+    }
+
+    this.$onInit = () => {
+      this.getNewImage()
+    }
   },
 
 
   template: `
     <div class="unsplash">
-      <img ng-src="https://images.unsplash.com/photo-1509823355042-c45de2e32391?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&s=93b3af8c4d35bb1851f33bef684fc1fd">
+      <img ng-click="$ctrl.getNewImage()" ng-src={{$ctrl.image}}>
     </div>
   `
 })

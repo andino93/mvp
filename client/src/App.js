@@ -2,20 +2,54 @@
 angular.module('todo-view', [])
 .component('app', {
   controller: function(server) {
-    this.todoList = ['drink coffee', 'drink beer', 'eat food', 'clean things']
+    this.todoList = []
+    this.input = ''
 
-    this.getFromServer = (endpoint) => {
-      server.get(endpoint)
+    this.editTodo = (options) => {
+      server.editTodo(options)
       .then(response => console.log(response))
       .catch(err => console.error(err))
     }
+
+    this.addTodoEntry = (input) => {
+      let newTodo = {
+        task: input,
+        isDone: false
+      }
+
+      console.log(newTodo)
+      server.addTodo(newTodo)
+      .then(response => this.getTodos())
+      .then(() => this.input = '')
+      .catch(err => console.error(err))
+    }
+
+    this.removeTodoEntry = todoItem => {
+      console.log(todoItem)
+      server.removeTodo(todoItem)
+      .then(response => this.getTodos())
+      .catch(err => console.error(err))
+    }
+
+    this.getTodos = () => {
+      server.get('todo')
+      .then(({data}) => this.todoList = data)
+      .catch(err => console.error(err))
+    }
+
+    this.$onInit = () => {
+      this.getTodos()
+    }
+
+
   },
 
   template: `
     <div class="appview">
-      <button ng-click="$ctrl.getFromServer('photo')" class="button">click me</button>
       <daily-image></daily-image>
-      <todo-list todo="$ctrl.todoList"></todo-list>
+      <input type="text" ng-model="$ctrl.input"></input>
+      <button ng-click="$ctrl.addTodoEntry($ctrl.input)">add</button>
+      <todo-list todo="$ctrl.todoList" delete="$ctrl.removeTodoEntry"></todo-list>
     </div>
   `
 })

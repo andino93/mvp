@@ -1,0 +1,7 @@
+.entry-item {
+  text-decoration: none
+}
+
+.entry-item.done {
+  text-decoration: line-through
+}

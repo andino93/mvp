@@ -1,7 +1,8 @@
 angular.module('todo-view')
 .component('todoList', {
   bindings: {
-    todo: '<'
+    todo: '<',
+    delete: '<'
   },
 
   controller: function () {
@@ -15,6 +16,7 @@ angular.module('todo-view')
         <todo-list-entry
           ng-repeat="entry in $ctrl.todo"
           entry="entry"
+          delete="$ctrl.delete"
           >
         </todo-list-entry>
       </ul>

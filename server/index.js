@@ -19,6 +19,7 @@ app.use(function(req, res, next) {
 app.get('/', (req, res) => res.send('please use proper endpoint'))
 
 app.get('/todo', (req, res) => {
+  console.log(req.body)
   db.read()
   .then(list => res.json(list))
   .catch(err => console.error(err))
@@ -26,8 +27,15 @@ app.get('/todo', (req, res) => {
 
 app.post('/todo', (req, res) => {
   db.saveTodo(req.body)
-  .then(result => res.json(result['_id']))
+  .then(result => res.json(result._id))
   .catch(err => res.json(err))
+})
+
+app.post('/todo/delete', (req, res) => {
+  console.log(req.body)
+  db.deleteTodo(req.body._id)
+  .then(result => res.json(result))
+  .catch(err => console.error(err))
 })
 
 app.put('/todo', (req, res) => {
@@ -42,4 +50,4 @@ app.get('/photo', (req, res) => {
   .catch(err => console.error(err))
 })
 
-app.listen(3000, () => console.log('hello server be runnin on 8080'))
+app.listen(3000, () => console.log('hello server be runnin on 3000'))
