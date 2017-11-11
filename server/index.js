@@ -24,12 +24,6 @@ app.get('/todo', (req, res) => {
   .catch(err => console.error(err))
 })
 
-app.get('/photo', (req, res) => {
-  api.unsplash(1)
-  .then(photos => res.json(photos))
-  .catch(err => console.error(err))
-})
-
 app.post('/todo', (req, res) => {
   db.saveTodo(req.body)
   .then(result => res.json(result['_id']))
@@ -39,6 +33,12 @@ app.post('/todo', (req, res) => {
 app.put('/todo', (req, res) => {
   db.editTodo(req.body.id, req.body.edit)
   .then(result => res.json(result))
+  .catch(err => console.error(err))
+})
+
+app.get('/photo', (req, res) => {
+  api.unsplash(1)
+  .then(photos => res.json(photos))
   .catch(err => console.error(err))
 })
 
