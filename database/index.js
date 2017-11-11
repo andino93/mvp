@@ -7,19 +7,37 @@ const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error: '))
 db.once('open', () => console.log('mon mon mongoooseee'))
 
-const ToDoSchema = mongoose.model('todo', {
+const ToDoSchema = mongoose.Schema({
   task: String,
-  isDone: Boolean,
-
+  isDone: Boolean
 })
 
-//TODO:
-// save function
-// change isDone status function
-// read function
-// delete function
-// export functions
+const Todo = mongoose.model('todoItem', ToDoSchema)
 
-const save = () => {
+module.exports.saveTodo = (object) => {
+  let newTodo = new Todo(object)
+  return newTodo.save()
+}
 
+module.exports.editTodo = (id, editedTask) => {
+  // change todo at id with edited editedTask
+  return new Promise((resolve, reject) => {
+    Todo.findByIdAndUpdate(id, editedTask, (err, success) => {
+      if (err) reject(err)
+      else resolve(success)
+    })
+  })
+}
+
+module.exports.deleteTodo = (id) => {
+  return new Promise((resolve, reject) => {
+    Todo.findByIdAndRemove(id, (err, success) => {
+      if (err) reject(err)
+      else resolve(success)
+    })
+  })
+}
+
+module.exports.read = () => {
+  return Todo.find()
 }
