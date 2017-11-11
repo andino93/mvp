@@ -9,7 +9,7 @@ db.once('open', () => console.log('mongo up'))
 
 const PhotoSchema = mongoose.model('photo', {
   url: String,
-  name: String
+  title: String
 })
 
 const ToDoScheme = mongoose.model('todo', {
