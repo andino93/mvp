@@ -4,11 +4,11 @@ angular.module('todo-view')
     return $http.get(`http://localhost:3000/${endpoint}`)
   }
 
-  this.editToDo = () => {
-    return $http.post('http://localhost:3000/todo/edit')
+  this.editToDo = (options) => {
+    return $http.put('http://localhost:3000/todo/')
   }
 
-  this.addToDo = () => {
+  this.addToDo = (options) => {
     return $http.post('http://localhost:3000/todo')
   }
 })

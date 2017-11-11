@@ -7,13 +7,13 @@ const db = require('../database/index.js')
 const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json({ extended: true }))
+app.use(bodyParser.json())
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
-});
+})
 
 // TODO:
 /*
@@ -44,12 +44,13 @@ app.get('/photo', (req, res) => {
 })
 
 app.post('/todo', (req, res) => {
+  // send back mongo id for changes
   res.send('post todo')
 })
 
-app.post('/todo/edit', (req, res) => {
+app.put('/todo', (req, res) => {
   // call db change with req id of post edit
-  res.send('post change')
+  res.send('todo item edited')
 })
 
 app.listen(3000, () => console.log('hello server be runnin on 8080'))
