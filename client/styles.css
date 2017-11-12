@@ -16,6 +16,7 @@ body {
 .appview {
   display: flex;
   justify-content: space-around;
+  border: 0.3px solid black;
 }
 
 .appview div {
@@ -64,6 +65,7 @@ body {
   border: none;
   color: #323538;
   font-weight: bold;
+  border: 0.3px solid black;
 }
 
 .todo-title {
