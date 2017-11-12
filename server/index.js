@@ -4,7 +4,9 @@ const bodyParser = require('body-parser')
 const Promise = require('bluebird')
 const db = require('../database/index.js')
 const api = require('./unsplash.js')
+const expressSession = require('express-session')
 const session = require('express-sessions')
+const mongoose = require('mongoose')
 
 
 const app = express()
@@ -17,7 +19,18 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
   next()
 })
-// app.use()
+app.use(expressSession({
+  secret: 'tododolist',
+  cookie: {maxAge: 2628000000},
+  store: new session({
+    storage: 'mongodb',
+    instance: mongoose,
+    host: 'localhost',
+    db: 'toDoMvp',
+    collection: 'sessions',
+    expire: 86400
+  })
+}))
 
 app.get('/', (req, res) => res.send('please use proper endpoint'))
 
