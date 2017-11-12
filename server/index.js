@@ -35,6 +35,8 @@ app.use(expressSession({
 app.get('/', (req, res) => res.send('please use proper endpoint'))
 
 app.get('/todo', (req, res) => {
+  console.log(req.session)
+  console.log(res.session)
   db.read()
   .then(list => res.json(list))
   .catch(err => console.error(err))
