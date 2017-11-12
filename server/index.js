@@ -4,7 +4,8 @@ const bodyParser = require('body-parser')
 const Promise = require('bluebird')
 const db = require('../database/index.js')
 const api = require('./unsplash.js')
-const cors = require('cors')
+const session = require('express-sessions')
+
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
   next()
 })
+// app.use()
 
 app.get('/', (req, res) => res.send('please use proper endpoint'))
 
