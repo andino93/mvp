@@ -9,7 +9,8 @@ angular.module('todo-view', [])
       let options = {
         id: edit._id,
         edit: {
-          task: edit.task
+          task: edit.task,
+          isDone: edit.isDone
         }
       }
       server.editTodo(options)
@@ -48,13 +49,17 @@ angular.module('todo-view', [])
   },
 
   template: `
+  <div class="top-bar-thing">Not Just Any To-Do List</div>
     <div class="appview">
       <div class="image">
         <daily-image></daily-image>
       </div>
       <div class="todo-container">
-        <input type="text" ng-model="$ctrl.input"></input>
-        <button ng-click="$ctrl.addTodoEntry($ctrl.input)">add</button>
+        <div class="todo-title">Todos:</div>
+        <div class="addbox">
+          <input class="addbox-input" type="text" ng-model="$ctrl.input"></input>
+          <button class="add" ng-click="$ctrl.addTodoEntry($ctrl.input)">add</button>
+        </div>
         <todo-list todo="$ctrl.todoList" edit="$ctrl.editTodo" delete="$ctrl.removeTodoEntry"></todo-list>
       </div>
     </div>

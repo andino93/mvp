@@ -12,6 +12,7 @@ angular.module('todo-view')
 
     this.checkedOff = () => {
       this.entry.isDone = !this.entry.isDone
+      this.edit(this.entry)
     }
   },
 
@@ -19,12 +20,12 @@ angular.module('todo-view')
   template:`
     <div ng-class="$ctrl.entry.isDone ? 'entry-item done' : 'entry-item'">
       <button ng-click="$ctrl.delete($ctrl.entry)" class="remove">x</button>
-      <input
+      <input class="checkbox"
         ng-click="$ctrl.checkedOff()"
         type="checkbox"
         ng-checked="$ctrl.entry.isDone"
         >
-      <span ng-hide"editing" ng-click="editing = true">
+      <span class="task" ng-hide"editing" ng-click="editing = true">
         {{$ctrl.entry.task}}
       </span>
       <form ng-show="editing" ng-submit="editing = false">

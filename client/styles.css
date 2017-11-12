@@ -1,5 +1,26 @@
+body {
+  box-sizing: border-box;
+  background-color: light-grey;
+}
+
+.add {
+  cursor: pointer;
+}
+
+.addbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
 .appview {
-  margin: auto
+  display: flex;
+  justify-content: space-around;
+}
+
+.appview div {
+  padding: 10px;
+  margin: 0 auto;
 }
 
 .entry-item {
@@ -9,15 +30,69 @@
 
 .entry-item.done {
   text-decoration: line-through;
-  text-align: left
+  text-align: left;
 }
 
-.todolist-container {
-  margin: auto;
-  text-align: center;
+.image{
+  min-width: 50%;
+  cursor: pointer;
+}
+
+.unsplash img {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.todo-container {
+  border: 0.3px solid black;
 }
 
 .todo-list {
-  margin: auto;
-  text-align: center
+  display: flex;
+  text-align: center;
+}
+
+.top-bar-thing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: 100% 100%;
+  height: 30px;
+  background: #A8B2BD;
+  outline: none;
+  border: none;
+  color: #323538;
+  font-weight: bold;
+}
+
+.todo-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.remove {
+  float: right;
+  padding: 3.5px;
+  color: red;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  font-size: 15px
+}
+
+.checkbox {
+  float: left;
+  cursor: pointer;
+}
+
+.task {
+  cursor: pointer;
 }

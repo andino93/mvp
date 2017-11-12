@@ -13,7 +13,7 @@ angular.module('todo-view')
 
   template:`
     <div class="todo-list">
-      <ul class="entry">
+      <div class="entry">
         <todo-list-entry
           ng-repeat="entry in $ctrl.todo"
           entry="entry"
@@ -21,7 +21,7 @@ angular.module('todo-view')
           edit="$ctrl.edit"
           >
         </todo-list-entry>
-      </ul>
+      </div>
     </div>
   `
 })
