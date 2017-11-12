@@ -8,7 +8,7 @@ angular.module('todo-view')
     this.image = ''
     this.getNewImage = () => {
       server.get('photo')
-      .then(({data}) => this.image = JSON.parse(data)[0].urls.small)
+      .then(({data}) => this.image = JSON.parse(data)[0].urls.regular)
       .catch(err => console.error(err))
     }
 

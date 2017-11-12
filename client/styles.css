@@ -1,7 +1,23 @@
+.appview {
+  margin: auto
+}
+
 .entry-item {
-  text-decoration: none
+  text-decoration: none;
+  text-align: left;
 }
 
 .entry-item.done {
-  text-decoration: line-through
+  text-decoration: line-through;
+  text-align: left
+}
+
+.todolist-container {
+  margin: auto;
+  text-align: center;
+}
+
+.todo-list {
+  margin: auto;
+  text-align: center
 }

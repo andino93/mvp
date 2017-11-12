@@ -19,7 +19,6 @@ app.use(function(req, res, next) {
 app.get('/', (req, res) => res.send('please use proper endpoint'))
 
 app.get('/todo', (req, res) => {
-  console.log(req.body)
   db.read()
   .then(list => res.json(list))
   .catch(err => console.error(err))
@@ -32,7 +31,6 @@ app.post('/todo', (req, res) => {
 })
 
 app.post('/todo/delete', (req, res) => {
-  console.log(req.body)
   db.deleteTodo(req.body._id)
   .then(result => res.json(result))
   .catch(err => console.error(err))

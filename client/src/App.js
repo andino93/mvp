@@ -5,9 +5,14 @@ angular.module('todo-view', [])
     this.todoList = []
     this.input = ''
 
-    this.editTodo = (options) => {
+    this.editTodo = (edit) => {
+      let options = {
+        id: edit._id,
+        edit: {
+          task: edit.task
+        }
+      }
       server.editTodo(options)
-      .then(response => console.log(response))
       .catch(err => console.error(err))
     }
 
@@ -17,16 +22,14 @@ angular.module('todo-view', [])
         isDone: false
       }
 
-      console.log(newTodo)
-      server.addTodo(newTodo)
+      server.post('todo', newTodo)
       .then(response => this.getTodos())
       .then(() => this.input = '')
       .catch(err => console.error(err))
     }
 
     this.removeTodoEntry = todoItem => {
-      console.log(todoItem)
-      server.removeTodo(todoItem)
+      server.post('todo/delete', todoItem)
       .then(response => this.getTodos())
       .catch(err => console.error(err))
     }
@@ -46,10 +49,14 @@ angular.module('todo-view', [])
 
   template: `
     <div class="appview">
-      <daily-image></daily-image>
-      <input type="text" ng-model="$ctrl.input"></input>
-      <button ng-click="$ctrl.addTodoEntry($ctrl.input)">add</button>
-      <todo-list todo="$ctrl.todoList" delete="$ctrl.removeTodoEntry"></todo-list>
+      <div class="image">
+        <daily-image></daily-image>
+      </div>
+      <div class="todo-container">
+        <input type="text" ng-model="$ctrl.input"></input>
+        <button ng-click="$ctrl.addTodoEntry($ctrl.input)">add</button>
+        <todo-list todo="$ctrl.todoList" edit="$ctrl.editTodo" delete="$ctrl.removeTodoEntry"></todo-list>
+      </div>
     </div>
   `
 })
