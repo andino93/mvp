@@ -1,14 +1,13 @@
 angular.module('todo-view')
 .component('dailyImage', {
-  bindings: {
-
-  },
 
   controller: function (server) {
     this.image = ''
+    this.photoSet = []
     this.getNewImage = () => {
       server.get('photo')
-      .then(({data}) => this.image = JSON.parse(data)[0].urls.regular)
+      .then(({data}) => this.photoSet.unshift(this.image = JSON.parse(data)[0].urls.regular))
+      .then(() => this.image = this.photoSet[0] )
       .catch(err => console.error(err))
     }
 
