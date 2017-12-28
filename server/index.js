@@ -50,4 +50,4 @@ app.get('/photo', (req, res) => {
   .catch(err => console.error(err))
 })
 
-app.listen(process.env.port, () => console.log('hello server be runnin on 3000'))
+app.listen(process.env.PORT, () => console.log('hello server be runnin on 3000'))
