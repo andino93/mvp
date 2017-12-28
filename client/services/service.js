@@ -1,14 +1,15 @@
 angular.module('todo-view')
 .service('server', function($http) {
   this.get = (endpoint) => {
-    return $http.get(`http://localhost:3000/${endpoint}`)
+    return $http.get(`/${endpoint}`)
   }
 
   this.editTodo = (options) => {
-    return $http.put('http://localhost:3000/todo/', options)
+    return $http.put(`/todo/`, options)
   }
 
   this.post = (endpoint, options) => {
-    return $http.post(`http://localhost:3000/${endpoint}`, options)
+    return $http.post(`/${endpoint}`, options)
   }
+
 })
