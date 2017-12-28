@@ -37,6 +37,7 @@
     "mongoose": "^4.13.1",
     "node": "^9.1.0",
     "nodemon": "^1.12.1",
+    "path": "^0.12.7",
     "request": "^2.83.0",
     "request-promise": "^4.2.2"
   }
