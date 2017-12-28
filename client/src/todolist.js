@@ -6,11 +6,6 @@ angular.module('todo-view')
     edit: '<'
   },
 
-  controller: function () {
-
-  },
-
-
   template:`
     <div class="todo-list">
       <div class="entry">

@@ -45,7 +45,6 @@ angular.module('todo-view', [])
       this.getTodos()
     }
 
-
   },
 
   template: `
