@@ -7,6 +7,7 @@ const api = require('./unsplash.js')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const path = require('path')
+require('dotenv').config()
 
 
 const app = express()
@@ -49,4 +50,4 @@ app.get('/photo', (req, res) => {
   .catch(err => console.error(err))
 })
 
-app.listen(3000, () => console.log('hello server be runnin on 3000'))
+app.listen(process.env.port, () => console.log('hello server be runnin on 3000'))
