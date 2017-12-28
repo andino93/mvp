@@ -11,6 +11,10 @@ angular.module('todo-view')
       .catch(err => console.error(err))
     }
 
+    // this.changeImage = (direction) => {
+    //   direction === 'back' ?
+    // }
+
     this.$onInit = () => {
       this.getNewImage()
     }

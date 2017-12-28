@@ -5,7 +5,6 @@ const Promise = require('bluebird')
 const db = require('../database/index.js')
 const api = require('./unsplash.js')
 const expressSession = require('express-session')
-const session = require('cookie-session')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
@@ -16,35 +15,45 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cors())
 app.set('trust proxy', 1)
-app.use(session({
+app.use('/todo', expressSession({
   name: 'session',
   secret: 'tododolist',
-  maxAge: 24 * 60 * 60 * 1000
+  // saveUninitialized: true,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000
+  }
 }))
 
-app.get('/', (req, res) => res.send('please use proper endpoint'))
+app.get('/', (req, res) => {
+  res.session = req.session
+  res.send(res.session.id)
+})
 
 app.get('/todo', (req, res) => {
-  console.log(req.session)
+  // console.log(req.session.id)
+  // console.log(req.session.cookie)
   db.read()
   .then(list => res.json(list))
   .catch(err => console.error(err))
 })
 
 app.post('/todo', (req, res) => {
+  // console.log(req.session.id)
   db.saveTodo(req.body)
   .then(result => res.json(result._id))
   .catch(err => res.json(err))
 })
 
-app.post('/todo/delete', (req, res) => {
-  db.deleteTodo(req.body._id)
+app.put('/todo', (req, res) => {
+  // console.log(req.session.id)
+  db.editTodo(req.body.id, req.body.edit)
   .then(result => res.json(result))
   .catch(err => console.error(err))
 })
 
-app.put('/todo', (req, res) => {
-  db.editTodo(req.body.id, req.body.edit)
+app.post('/todo/delete', (req, res) => {
+  // console.log(req.session.id)
+  db.deleteTodo(req.body._id)
   .then(result => res.json(result))
   .catch(err => console.error(err))
 })

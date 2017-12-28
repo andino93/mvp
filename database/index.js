@@ -1,10 +1,11 @@
 // mongo and mongoose db connection
 const mongoose = require('mongoose')
+require('dotenv').config()
+
 mongoose.Promise = require('bluebird')
 const options = { promiseLibrary: require('bluebird'), useMongoClient: true }
 
-
-mongoose.connect('mongodb://localhost/toDoMvp', options)
+mongoose.connect(process.env.database, options)
 const db = mongoose.connection
 
 db.on('error', console.error.bind(console, 'connection error: '))
